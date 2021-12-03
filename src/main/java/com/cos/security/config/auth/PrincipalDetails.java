@@ -2,19 +2,29 @@ package com.cos.security.config.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.cos.security.model.User;
 
-public class PrincipalDetails implements UserDetails{
+import lombok.Data;
+@Data
+public class PrincipalDetails implements UserDetails, OAuth2User{
 
 	private User user;
+	private Map<String,Object> attributes;
 	
 	public PrincipalDetails(User user) {
 		this.user = user;
 	} 
+	public PrincipalDetails(User user, Map<String, Object> attributes) {
+		this.user = user;
+		this.attributes = attributes;
+	} 
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collect = new ArrayList<>();
@@ -59,5 +69,15 @@ public class PrincipalDetails implements UserDetails{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	@Override
+	public Map<String, Object> getAttributes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

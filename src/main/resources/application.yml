@@ -32,4 +32,11 @@ spring:
             - email
             - profile
             
+         facebook:
+           client-id: 424998039346475
+           client-secret: 9c5e1090b0b079eee37d9e40e036785b
+           scope:
+            - email
+            - public_profile
+            
           
